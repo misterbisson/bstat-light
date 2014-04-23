@@ -26,11 +26,6 @@ class bStat
 				array(
 					'endpoint' => admin_url( '/admin-ajax.php?action=' . $this->id_base ),
 					'secret' => $this->version,
-					'session_cookie' => (object) array(
-						'domain' => COOKIE_DOMAIN, // a WP-provided constant
-						'path' => '/',
-						'duration'=> 1800, // 30 minutes in seconds
-					),
 				),
 				$this->id_base
 			);
@@ -66,30 +61,6 @@ class bStat
 	{
 		global $wpdb;
 		return isset( $wpdb->blogid ) ? $wpdb->blogid : 1;
-	}
-
-	public function get_session()
-	{
-		// get or start a session
-		if ( isset( $_COOKIE[ $this->id_base ]['session'] ) )
-		{
-			$session = $_COOKIE[ $this->id_base ]['session'];
-		}
-		else
-		{
-			$session = md5( microtime() . $this->options()->secret );
-		}
-
-		// set or update the cookie to expire in 30 minutes or so (configurable)
-		setcookie(
-			$this->id_base . '[session]',
-			$session,
-			time() + $this->options()->session_cookie->duration,
-			$this->options()->session_cookie->path,
-			$this->options()->session_cookie->domain
-		);
-
-		return $session;
 	}
 
 	public function initial_setup()
