@@ -41,7 +41,6 @@ class bStat
 
 	public function wp_localize_script()
 	{
-		global $wpdb;
 		$details = array(
 			'post'       => is_singular() ? get_queried_object_id() : FALSE, // this is either an int or BOOL
 			'blog'       => (int) $this->get_blog(),
@@ -61,11 +60,6 @@ class bStat
 	{
 		global $wpdb;
 		return isset( $wpdb->blogid ) ? $wpdb->blogid : 1;
-	}
-
-	public function initial_setup()
-	{
-		$this->db()->initial_setup();
 	}
 
 }
