@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: bStat
+Plugin Name: bStat - light
 Plugin URI: http://wordpress.org/plugins/bstats/
 Description: Blog stats and activity stream
 Version: 6.0
