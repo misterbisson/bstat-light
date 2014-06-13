@@ -41,15 +41,17 @@ class bStat
 
 	public function wp_localize_script()
 	{
+		$post_id = is_singular() ? get_queried_object_id() : FALSE;
 		$details = array(
-			'post'       => is_singular() ? get_queried_object_id() : FALSE, // this is either an int or BOOL
+			'post'       => $post_id, // this is either an int or BOOL
 			'blog'       => (int) $this->get_blog(),
+			'guid'       => $post_id ? get_post_field( 'guid', $post_id ) : FALSE,
 			'endpoint'   => esc_js( $this->options()->endpoint ),
 		);
 		$details['signature'] = $this->get_signature( $details );
 
 		return $details;
-	}
+	}//end wp_localize_script
 
 	public function get_signature( $details )
 	{
