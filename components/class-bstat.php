@@ -13,7 +13,7 @@ class bStat
 	{
 		add_action( 'template_redirect', array( $this, 'template_redirect' ), 15 );
 
-		wp_register_script( $this->id_base, plugins_url( plugin_basename( __DIR__ ) ) . '/js/bstat.js', array( 'jquery' ), $this->version, TRUE );
+		wp_register_script( $this->id_base, plugins_url( 'js/bstat.js', __FILE__ ), array( 'jquery' ), $this->version, TRUE );
 		wp_enqueue_script( $this->id_base );
 	} // END init
 
