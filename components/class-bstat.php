@@ -3,6 +3,7 @@ class bStat
 {
 	public $id_base = 'bstat';
 	public $version = 5;
+	private $options;
 
 	public function __construct()
 	{
